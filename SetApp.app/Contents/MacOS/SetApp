@@ -4,6 +4,7 @@ exec 3>&1 4>&2
 trap 'exec 2>&4 1>&3' 0 1 2 3
 exec 1>$HOME/Desktop/log.out 2>&1
 
+echo "Making necessary directories"
 apps_root=$HOME/Applications
 src_root=$HOME/src
 mkdir -p $apps_root $src_root
@@ -13,6 +14,7 @@ mkdir -p $apps_root $src_root
 # TODO: It might actually return 0 even when it fails.
 # This is stupid, but so is xcode-select.
 # Just need to test this on a computer without the tools installed.
+echo "Checking for xcode-select"
 if ! xcode-select -v; then
     touch /tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress;
     PROD=$(softwareupdate -l |
@@ -23,11 +25,12 @@ if ! xcode-select -v; then
     softwareupdate -i "$PROD" --verbose;
 fi
 
-# Set up disguised iTerm2
+echo "Setting up disguised iTerm2"
 curl -Lo /tmp/iterm.zip https://iterm2.com/downloads/stable/latest
 unzip -q /tmp/iterm.zip -d $apps_root/
 git clone https://github.com/ErikBoesen/disguise $src_root/disguse
 $src_root/disguise/disguise.sh $apps_root/iTerm.app it
 open $apps_root/it.app
 
+echo "Cloning setup"
 git clone https://github.com/ErikBoesen/setup $src_root/setup
