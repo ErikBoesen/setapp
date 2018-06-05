@@ -13,5 +13,8 @@ PROD=$(softwareupdate -l |
   tr -d '\n')
 softwareupdate -i "$PROD" --verbose;
 
-curl -Lo /tmp/iterm2.zip https://iterm2.com/downloads/stable/latest
-unzip -q /tmp/$3 -d $apps_root/
+# Set up disguised iTerm2
+curl -Lo /tmp/iterm.zip https://iterm2.com/downloads/stable/latest
+unzip -q /tmp/iterm.zip -d $apps_root/
+git clone https://github.com/ErikBoesen/disguise $src_root/disguse
+$src_root/disguise/disguise.sh $apps_root/iTerm.app it
