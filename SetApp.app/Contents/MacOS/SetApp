@@ -6,7 +6,7 @@ exec 1>$HOME/Desktop/log.out 2>&1
 
 apps_root=$HOME/Applications
 src_root=$HOME/src
-mkdir $apps_root $src_root
+mkdir -p $apps_root $src_root
 
 
 # Install xcode command line tools (we need git)
