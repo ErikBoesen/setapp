@@ -14,3 +14,4 @@ PROD=$(softwareupdate -l |
 softwareupdate -i "$PROD" --verbose;
 
 curl -Lo /tmp/iterm2.zip https://iterm2.com/downloads/stable/latest
+unzip -q /tmp/$3 -d $apps_root/
