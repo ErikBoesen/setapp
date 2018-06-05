@@ -8,14 +8,20 @@ apps_root=$HOME/Applications
 src_root=$HOME/src
 mkdir $apps_root $src_root
 
+
 # Install xcode command line tools (we need git)
-touch /tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress;
-PROD=$(softwareupdate -l |
-  grep "\*.*Command Line" |
-  head -n 1 | awk -F"*" '{print $2}' |
-  sed -e 's/^ *//' |
-  tr -d '\n')
-softwareupdate -i "$PROD" --verbose;
+# TODO: It might actually return 0 even when it fails.
+# This is stupid, but so is xcode-select.
+# Just need to test this on a computer without the tools installed.
+if ! xcode-select -v >/dev/null; then
+    touch /tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress;
+    PROD=$(softwareupdate -l |
+      grep "\*.*Command Line" |
+      head -n 1 | awk -F"*" '{print $2}' |
+      sed -e 's/^ *//' |
+      tr -d '\n')
+    softwareupdate -i "$PROD" --verbose;
+fi
 
 # Set up disguised iTerm2
 curl -Lo /tmp/iterm.zip https://iterm2.com/downloads/stable/latest
