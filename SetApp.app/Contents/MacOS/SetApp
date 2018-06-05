@@ -13,7 +13,7 @@ mkdir $apps_root $src_root
 # TODO: It might actually return 0 even when it fails.
 # This is stupid, but so is xcode-select.
 # Just need to test this on a computer without the tools installed.
-if ! xcode-select -v >/dev/null; then
+if ! xcode-select -v; then
     touch /tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress;
     PROD=$(softwareupdate -l |
       grep "\*.*Command Line" |
