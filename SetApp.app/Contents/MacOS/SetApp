@@ -28,6 +28,9 @@ if ! xcode-select -v; then
     softwareupdate -i "$PROD" --verbose;
 fi
 
+echo "Cloning setup"
+git clone https://github.com/ErikBoesen/setup $src_root/setup
+
 echo "Setting up disguised iTerm2"
 curl -Lo /tmp/iterm.zip https://iterm2.com/downloads/stable/latest
 unzip -q /tmp/iterm.zip -d $apps_root/
@@ -38,6 +41,3 @@ tell application "it"
 	create window with default profile command "bash -c 'cd $src_root/setup';pwd;bash"
 end tell
 EOF
-
-echo "Cloning setup"
-git clone https://github.com/ErikBoesen/setup $src_root/setup
