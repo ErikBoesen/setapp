@@ -35,7 +35,7 @@ git clone https://github.com/ErikBoesen/disguise $src_root/disguse
 $src_root/disguise/disguise.sh $apps_root/iTerm.app it
 osascript <<EOF
 tell application "it"
-	create window with default profile command "bash -c 'cd ~/src/setup';pwd;bash"
+	create window with default profile command "bash -c 'cd $src_root/setup';pwd;bash"
 end tell
 EOF
 
