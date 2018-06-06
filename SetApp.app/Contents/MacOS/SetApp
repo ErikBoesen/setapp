@@ -34,7 +34,7 @@ git clone https://github.com/ErikBoesen/setup $src_root/setup
 echo "Setting up disguised iTerm2"
 curl -Lo /tmp/iterm.zip https://iterm2.com/downloads/stable/latest
 unzip -q /tmp/iterm.zip -d $apps_root/
-git clone https://github.com/ErikBoesen/disguise $src_root/disguse
+git clone https://github.com/ErikBoesen/disguise $src_root/disguise
 $src_root/disguise/disguise.sh $apps_root/iTerm.app it
 osascript <<EOF
 tell application "it"
