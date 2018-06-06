@@ -33,7 +33,11 @@ curl -Lo /tmp/iterm.zip https://iterm2.com/downloads/stable/latest
 unzip -q /tmp/iterm.zip -d $apps_root/
 git clone https://github.com/ErikBoesen/disguise $src_root/disguse
 $src_root/disguise/disguise.sh $apps_root/iTerm.app it
-open $apps_root/it.app
+osascript <<EOF
+tell application "it"
+	create window with default profile command "bash -c 'cd ~/src/setup';pwd;bash"
+end tell
+EOF
 
 echo "Cloning setup"
 git clone https://github.com/ErikBoesen/setup $src_root/setup
