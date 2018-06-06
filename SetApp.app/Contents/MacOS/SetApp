@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
 
+logfile=$HOME/Desktop/setapplog.txt
 exec 3>&1 4>&2
 trap 'exec 2>&4 1>&3' 0 1 2 3
-exec 1>$HOME/Desktop/setapplog.txt 2>&1
-qlmanage -p "$HOME/Desktop/setapplog.txt" >/dev/null 2>&1 &
+exec 1>$logfile 2>&1
+qlmanage -p $logfile >/dev/null 2>&1 &
 
 echo "Making necessary directories"
 apps_root=$HOME/Applications
