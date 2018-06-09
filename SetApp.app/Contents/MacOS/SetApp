@@ -14,11 +14,8 @@ mkdir -p $apps_root $src_root
 
 
 # Install xcode command line tools (we need git)
-# TODO: It might actually return 0 even when it fails.
-# This is stupid, but so is xcode-select.
-# Just need to test this on a computer without the tools installed.
 echo "Checking for xcode-select"
-if ! xcode-select -v; then
+if ! xcode-select -p; then
     touch /tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress;
     PROD=$(softwareupdate -l |
       grep "\*.*Command Line" |
