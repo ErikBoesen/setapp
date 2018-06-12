@@ -40,4 +40,4 @@ tell application "it"
 	create window with default profile command "bash -c 'cd $src_root/setup';pwd;bash"
 end tell
 EOF
-osascript -e 'display notification "SetApp has finished running!" with title "Done!"'
+osascript -e 'display notification "SetApp has finished running!" with title "Done!" sound name ""'
